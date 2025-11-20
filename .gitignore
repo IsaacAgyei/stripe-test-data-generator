@@ -24,6 +24,8 @@ bld/
 [Ll]ogs/
 .vscode
 .DS_Store
+.env
+.env.local
 
 # .NET Core
 project.lock.json
