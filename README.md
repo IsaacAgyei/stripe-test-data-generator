@@ -2,6 +2,19 @@
 
 A RESTful API making it simply to generate test data for Stripe
 
+## Features
+
+### CustomerPaymentPipeline
+
+Creates complete Stripe test data pipelines that include:
+
+1. **Customer** - Creates a test customer with fake data
+2. **PaymentIntent** - Creates a payment intent linked to the customer
+3. **PaymentIntent Confirmation** - Confirms the payment intent
+4. **PaymentIntent Capture** - Captures the confirmed payment
+
+Each procedure creates all four steps in sequence, with all objects linked together. You can specify how many complete procedures you want to execute.
+
 ## Setup
 
 ### 1. Get Your Stripe API Key
@@ -11,13 +24,13 @@ A RESTful API making it simply to generate test data for Stripe
 
 ### 2. Configure Environment Variables
 
-**Option A: Using .env file (Local Development)**
+**Option A: Using .env.local file (Local Development)**
 
 ```bash
-cp .env.example .env
+cp .env.example .env.local
 ```
 
-Then edit `.env` and add your Stripe API key:
+Then edit `.env.local` and add your Stripe API key:
 
 ```
 STRIPE_API_KEY=sk_test_your_actual_key_here
@@ -40,7 +53,20 @@ dotnet user-secrets set "STRIPE_API_KEY" "sk_test_your_actual_key_here"
 
 ```bash
 cd generate-stripe-test-data
+dotnet run [number_of_procedures]
+```
+
+**Examples:**
+
+```bash
+# Run 3 procedures (default)
 dotnet run
+
+# Run 5 procedures
+dotnet run 5
+
+# Run 1 procedure
+dotnet run 1
 ```
 
 ## Security
