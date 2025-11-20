@@ -3,7 +3,7 @@
 using Bogus;
 using Stripe;
 
-StripeConfiguration.ApiKey = "REPLACE_WITH_ENV_VAR";
+StripeConfiguration.ApiKey = Environment.GetEnvironmentVariable("STRIPE_API_KEY");
 
 var testOrders = new Faker<CustomerCreateOptions>()
     .RuleFor(o => o.Name, f => f.Name.FullName())
